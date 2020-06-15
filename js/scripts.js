@@ -4,7 +4,7 @@ function Place(location, landmark, dateVisited, notes)  {
   this.dateVisited = dateVisited,
   this.notes = notes
 }
-Contact.prototype.tripOverview = function() {
+Place.prototype.tripOverview = function() {
   return this.location + " " + this.landmark + " " + this.dateVisited + " " + this.notes;
 }
 function Passport() {
@@ -45,13 +45,32 @@ let passport = new Passport();
 function displayPlaceDetails(passportToDisplay) {
   let placesList = $("ul#places");
   let htmlForPlaceInfo = "";
-  passportToDisplay.places.forEach(function(contact)  {
+  passportToDisplay.places.forEach(function(place)  {
     htmlForPlaceInfo += "<li id=" + place.id + ">" + place.location + ", " + place.landmark + "</li>"
   });
-  conactsList.html(htmlForPlaceInfo);
+  placesList.html(htmlForPlaceInfo);
 };
-
-
+function showPlace(placeId) {
+  const place = passport.findPlace(placeId);
+  $("#show-place").show();
+  $(".location").html(place.location);
+  $(".landmark").html(place.landmark);
+  $(".dateVisited").html(place.dateVisited);
+  $(".notes").html(place.notes);
+  let buttons = $("#buttons");
+  buttons.empty();
+  buttons.append("<button class='deleteButton' id=" + place.id + ">Delete</button>");
+}
+function attachContactListeners() {
+  $("ul#places").on("click", "li", function () {
+    showPlace(this.id);
+  });
+  $("#buttons").on("click", ".deleteButton", function () {
+    passport.deletePlace(this.id);
+    $("#show-place").hide();
+    displayPlaceDetails(passport);
+  });
+};
 $(document).ready(function () {
   attachContactListeners();
   $("form#location").submit(function (event) {
