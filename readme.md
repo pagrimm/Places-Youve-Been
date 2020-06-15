@@ -1,12 +1,21 @@
 # _Places You've Been_
 
-#### _Description, Date_
+#### _An application to store locations and details about them, 6.15.2020_
 
 #### By _**Taylor Phillips and Peter Grimm**_
 
 ## Description
 
-_Detailed description of the application_
+_A page that stores locations you've visited, created as an exercise to practce using objects, constructors, prototype methods, and event delegation/bubbling._
+
+## Application Specs
+
+| Behavior  | Input | Output  |
+| --------- |  ---- | ------- |
+| User can input place details like name, landmark, date visited and notes and have the location stored in a list | Paris, Eiffel Tower, "4.22.2000", "It's really tall!" | {location: "Paris", landmark: "Eiffel Tower", date: "4.22.2000", notes: "It's really tall!"}
+| Inputted Location will be displayed on a list with a shortened description  | London, Big Ben, "5.23.2014", "It's a huge clock!"  | London, Big Ben |
+| If user clicks on the list item than the inputted information about that item is displayed on the right side of page  | Paris, Eiffel Tower (Click) | Location: Paris, Landmark: Eiffel Tower, Date Visited: "4.22.2000", Notes: "It's really tall" |
+
 
 ## Setup/Installation Requirements
 
