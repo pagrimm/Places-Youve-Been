@@ -12,7 +12,7 @@ function Passport() {
   this.currentId = 0
 }
 Passport.prototype.addPlace = function(place) {
-  place.id = this.assigndId();
+  place.id = this.assignId();
   this.places.push(place);
 }
 Passport.prototype.assignId = function()  {
@@ -52,10 +52,10 @@ function displayPlaceDetails(passportToDisplay) {
 };
 function showPlace(placeId) {
   const place = passport.findPlace(placeId);
-  $("#show-place").show();
+  $("#show-place").toggle();
   $(".location").html(place.location);
   $(".landmark").html(place.landmark);
-  $(".dateVisited").html(place.dateVisited);
+  $(".date-visited").html(place.dateVisited);
   $(".notes").html(place.notes);
   let buttons = $("#buttons");
   buttons.empty();
@@ -87,6 +87,6 @@ $(document).ready(function () {
 
     let newPlace = new Place(inputtedLocation, inputtedLandmark, inputtedDateVisited, inputtedNotes);
     passport.addPlace(newPlace);
-    displayContactDetails(addressBook);
+    displayPlaceDetails(passport);
   })
 })
