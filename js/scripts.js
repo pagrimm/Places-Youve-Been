@@ -4,7 +4,9 @@ function Place(location, landmark, dateVisited, notes)  {
   this.dateVisited = dateVisited,
   this.notes = notes
 }
-
+Contact.prototype.tripOverview = function() {
+  return this.location + " " + this.landmark + " " + this.dateVisited + " " + this.notes;
+}
 function Passport() {
   this.places = [],
   this.currentId = 0
@@ -19,34 +21,53 @@ Passport.prototype.assignId = function()  {
 }
 Passport.prototype.findPlace = function(id) {
   for (let i=0; i< this.places.length; i++) {
-    if (this.places[i])  {
-      if (this.places[i].id == id)  {
-        return this.places[i];
-      }
+    if (this.places[i].id == id)  {
+      return this.places[i];
+    }
+  };
+  return false;
+}
+Passport.prototype.deletePlace = function(id) {
+  for (let i=0; i< this.places.length; i++) {
+    if (this.places[i].id == id)  {
+      this.places.splice(i, 1)
+      return true;
     }
   };
   return false;
 }
 
-
-
 //1. Display properties when a user clicks the place's name.
 //2. Add specs to README.md
+
+let passport = new Passport();
+
+function displayPlaceDetails(passportToDisplay) {
+  let placesList = $("ul#places");
+  let htmlForPlaceInfo = "";
+  passportToDisplay.places.forEach(function(contact)  {
+    htmlForPlaceInfo += "<li id=" + place.id + ">" + place.location + ", " + place.landmark + "</li>"
+  });
+  conactsList.html(htmlForPlaceInfo);
+};
+
+
 $(document).ready(function () {
   attachContactListeners();
-  $("form#new-contact").submit(function (event) {
+  $("form#location").submit(function (event) {
     event.preventDefault();
-    const newPlace = $("input#new-first-name").val();
-    const newPlaceLandmark = $("input#new-last-name").val();
-    const inputtedPhoneNumber = $("input#new-phone-number").val();
+    const inputtedLocation = $("input#new-location").val();
+    const inputtedLandmark = $("input#new-landmark").val();
+    const inputtedDateVisited = $("input#new-date-visited").val();
+    const inputtedNotes = $("input#new-notes").val();
 
-    // The next three lines are new:
-    $("input#new-first-name").val("");
-    $("input#new-last-name").val("");
-    $("input#new-phone-number").val("");
+    $("input#new-location").val("");
+    $("input#new-landmark").val("");
+    $("input#new-date-visited").val("");
+    $("input#new-notes").val("");
 
-    let newContact = new Contact(inputtedFirstName, inputtedLastName, inputtedPhoneNumber);
-    addressBook.addContact(newContact);
+    let newPlace = new Place(inputtedLocation, inputtedLandmark, inputtedDateVisited, inputtedNotes);
+    passport.addPlace(newPlace);
     displayContactDetails(addressBook);
   })
 })
