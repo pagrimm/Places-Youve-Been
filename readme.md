@@ -1,8 +1,8 @@
-# _Project Title_
+# _Places You've Been_
 
 #### _Description, Date_
 
-#### By _**Taylor Phillips**_
+#### By _**Taylor Phillips and Peter Grimm**_
 
 ## Description
 
@@ -40,4 +40,4 @@ _VSCode_
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-Copyright (c) 2020 **_Taylor Phillips_**
+Copyright (c) 2020 **_Taylor Phillips and Peter Grimm_**
